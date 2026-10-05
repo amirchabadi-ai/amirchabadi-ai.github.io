@@ -5,7 +5,17 @@
 <body><p>Retour vers Jarvis…</p>
 <p>Si rien ne se passe, vérifie que Jarvis est lancé sur ce PC, puis <a id="lien" href="#">clique ici</a>.</p>
 <script>
-  var cible = 'http://localhost:8800/oauth/instagram/retour' + window.location.search;
+  var origine = 'http://localhost:8800';
+  try {
+    var etat = new URLSearchParams(window.location.search).get('state') || '';
+    var i = etat.lastIndexOf('.');
+    if (i > 0) {
+      var b = etat.slice(i + 1).replace(/-/g, '+').replace(/_/g, '/');
+      var o = atob(b + '==='.slice((b.length + 3) % 4));
+      if (/^(https:\/\/[a-z0-9-]+\.[a-z0-9-]+\.ts\.net|http:\/\/(localhost|127\.0\.0\.1):\d{2,5})$/.test(o)) origine = o;
+    }
+  } catch (e) {}
+  var cible = origine + '/oauth/instagram/retour' + window.location.search;
   document.getElementById('lien').href = cible;
   window.location.replace(cible);
 </script></body></html>
