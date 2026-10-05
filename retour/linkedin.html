@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retour vers Jarvis</title><meta name="robots" content="noindex">
+<style>body{font-family:system-ui,sans-serif;max-width:560px;margin:60px auto;padding:0 16px;color:#1d2433}</style></head>
+<body><p>Retour vers Jarvis…</p>
+<p>Si rien ne se passe, vérifie que Jarvis est lancé sur ce PC, puis <a id="lien" href="#">clique ici</a>.</p>
+<script>
+  var cible = 'http://localhost:8800/oauth/linkedin/retour' + window.location.search;
+  document.getElementById('lien').href = cible;
+  window.location.replace(cible);
+</script></body></html>
